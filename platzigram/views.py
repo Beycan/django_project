@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 #utilities
 from datetime import datetime
+import json
 
 def hello_world(request):
     """return a greeting"""
@@ -13,7 +14,15 @@ def hello_world(request):
 def hi(request):
     """hi"""
     numeros=request.GET['num']
+    numeros=[int(i) for i in numeros.split(',')]
+    numeros=sorted(numeros)
+    data={
+        'status':'ok',
+        'numbers':numeros,
+        'mensaje':'este es el mensaje'
+    }
     print(numeros)
+    # import pdb;  pdb.set_trace()
 
 #    import pdb;  pdb.set_trace() #esto detiene la ejecucion y permite la interaccion con la consola
-    return HttpResponse(numeros)
+    return HttpResponse(json.dumps(data,indent=4),content_type='application/json')
