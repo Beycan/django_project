@@ -8,7 +8,7 @@ class Profile(models.Model):
     """Profile model.
     Proxy model that extends the base data with other information
     """
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE) #esto le dice que solo puede haber un usuario con este nombre
 
     website=models.URLField(max_length=200,blank=True)
     biography=models.TextField(blank=True)
